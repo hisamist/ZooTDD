@@ -46,4 +46,18 @@ public class ZooManagerTests
         result.Should().BeEquivalentTo(lion);
     }
 
+    [Fact]
+    [Trait("Requirement", "REQ-Z-003")]
+    public void GetAnimal_UnknownId_ReturnsNull()
+    {
+        // Arrange
+        var zoo = new ZooManager();
+
+        // Act
+        var result = zoo.GetAnimal(999);
+
+        // Assert
+        result.Should().BeNull();
+    }
+
 }
