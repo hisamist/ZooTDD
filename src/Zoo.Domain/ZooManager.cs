@@ -39,10 +39,16 @@ public class ZooManager
                 return 5.0; // Example: 5 kg of meat per day
 
         if (animal.Category == AnimalCategory.Herbivore)
+            if (animal.Status == HealthStatus.Sick)
+                return 7.0; // Example: 10 kg of plants per day reduced by 30% for sick health status
+            else
             return 10.0; // Example: 10 kg of plants per day
 
         if (animal.Category == AnimalCategory.Omnivore)
-            return 7.0; // Example: 7 kg of mixed food per day
+            if (animal.Status == HealthStatus.Sick)
+                return 4.9; // Example: 7 kg of mixed food per day reduced by 30% for sick health status
+            else
+                return 7.0; // Example: 7 kg of mixed food per day
 
         throw new ArgumentException($"Unknown animal category for ID {animalId}.");
     }

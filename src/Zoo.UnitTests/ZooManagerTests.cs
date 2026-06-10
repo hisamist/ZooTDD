@@ -243,7 +243,7 @@ public class ZooManagerTests
     [Trait("Requirement", "REQ-Z-009")]
     public void CalculateDailyRation_ForASickAnimalOmnivore()
     {
-                // Arrange
+        // Arrange
         var zoo = new ZooManager();
         var sickBear = new Animal { Id = 1, Name = "Baloo", Category = AnimalCategory.Omnivore, Status = HealthStatus.Sick };
         zoo.AddAnimal(sickBear);
