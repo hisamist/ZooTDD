@@ -111,4 +111,19 @@ public class ZooManagerTests
         act.Should().Throw<ZooCapacityExceededException>();
     }
 
+    [Fact]
+    [Trait("Requirement", "REQ-Z-007")]
+    public void TotalCapacityUsed_OneCriticalAnimal_CountsAsTwo()
+    {
+        // Arrange
+        var zoo = new ZooManager();
+        zoo.AddAnimal(new Animal { Id = 1, Name = "Simba", Category = AnimalCategory.Carnivore, Status = HealthStatus.Healthy });
+        zoo.AddAnimal(new Animal { Id = 2, Name = "Nala", Category = AnimalCategory.Carnivore, Status = HealthStatus.Critical });
+
+        // Act
+        var result = zoo.TotalCapacityUsed;
+
+        // Assert
+        result.Should().Be(3);
+    }
 }
