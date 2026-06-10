@@ -321,4 +321,34 @@ public class ZooManagerTests
         criticalAnimals.Should().HaveCount(3);
         criticalAnimals.Should().OnlyContain(a => a.Status == HealthStatus.Critical);
     }
+
+    [Fact]
+    [Trait("Requirement", "REQ-Z-014")]
+    public void RemoveAnimal_ExistingId_ReturnsTrue()
+    {
+        // Arrange
+        var zoo = new ZooManager();
+        zoo.AddAnimal(new Animal { Id = 1, Name = "Simba", Category = AnimalCategory.Carnivore });
+
+        // Act
+        var result = zoo.RemoveAnimal(1);
+
+        // Assert
+        result.Should().BeTrue();
+        zoo.TotalAnimals.Should().Be(0);
+    }
+
+    [Fact]
+    [Trait("Requirement", "REQ-Z-015")]
+    public void RemoveAnimal_UnknownId_ReturnsFalse()
+    {
+        // Arrange
+        var zoo = new ZooManager();
+
+        // Act
+        var result = zoo.RemoveAnimal(999);
+
+        // Assert
+        result.Should().BeFalse();
+    }
 }
