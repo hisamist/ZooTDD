@@ -60,4 +60,21 @@ public class ZooManagerTests
         result.Should().BeNull();
     }
 
+    [Fact]
+    [Trait("Requirement", "REQ-Z-004")]
+    public void TotalAnimals_AfterAddingThreeAnimals_ReturnsThree()
+    {
+        // Arrange
+        var zoo = new ZooManager();
+        zoo.AddAnimal(new Animal { Id = 1, Name = "Simba", Category = AnimalCategory.Carnivore });
+        zoo.AddAnimal(new Animal { Id = 2, Name = "Zazu", Category = AnimalCategory.Omnivore });
+        zoo.AddAnimal(new Animal { Id = 3, Name = "Pumbaa", Category = AnimalCategory.Herbivore });
+
+        // Act
+        var total = zoo.TotalAnimals;
+
+        // Assert
+        total.Should().Be(3);
+    }
+
 }
