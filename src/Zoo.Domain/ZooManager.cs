@@ -71,4 +71,9 @@ public class ZooManager
     public IReadOnlyList<Animal> GetCriticalAnimals()
         => _animals.Values.Where(a => a.Status == HealthStatus.Critical).ToList();
     public bool RemoveAnimal(int id) => _animals.Remove(id);
+
+    public IReadOnlyList<Animal> GetAnimalsByCategory(AnimalCategory category)
+    {
+        return _animals.Values.Where(a => a.Category == category).ToList();
+    }
 }
