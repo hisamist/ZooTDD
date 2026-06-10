@@ -102,16 +102,19 @@ public class ZooManagerTests
         .WithMessage("*1 already exists*");
     }
 
-    [Fact]
+    [Theory]
+    [InlineData(50, HealthStatus.Healthy)]
+    [InlineData(50, HealthStatus.Sick)]
+    [InlineData(25, HealthStatus.Critical)]
     [Trait("Requirement", "REQ-Z-006")]
     [Trait("TestCase", "TC-006")]
-    public void AddAnimal_AtMaxCapacity_ThrowsZooCapacityExceededException()
+    public void AddAnimal_AtMaxCapacity_ThrowsZooCapacityExceededException(int nombreAnimal, HealthStatus status)
     {
         // Arrange
         var zoo = new ZooManager();
-        for (var i = 1; i <= ZooManager.MaxCapacity; i++)
+        for (var i = 1; i <= nombreAnimal; i++)
         {
-            zoo.AddAnimal(new Animal { Id = i, Name = $"Animal{i}", Category = AnimalCategory.Herbivore });
+            zoo.AddAnimal(new Animal { Id = i, Name = $"Animal{i}", Category = AnimalCategory.Herbivore, Status = status });
         }
 
         // Act
@@ -390,7 +393,7 @@ public class ZooManagerTests
 
     [Fact]
     [Trait("Requirement", "REQ-Z-016")]
-     [Trait("TestCase", "TC-020")]
+    [Trait("TestCase", "TC-020")]
     public void CalculateMonthlyCost_ZooWithVariousAnimals_ReturnsExpectedMonthlyCost()
     {
         // Arrange

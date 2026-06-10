@@ -10,7 +10,7 @@ public class ZooManager
         if (_animals.ContainsKey(animal.Id))
             throw new DuplicateAnimalException(animal.Id);
 
-        if (_animals.Count >= MaxCapacity)
+        if (TotalCapacityUsed >= MaxCapacity)
             throw new ZooCapacityExceededException();
 
         _animals[animal.Id] = animal;
