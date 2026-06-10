@@ -189,4 +189,19 @@ public class ZooManagerTests
         // Assert
         totalCost.Should().Be(45); // 25 (Carnivore) + 20 (frais vétérinaires Sick)
     }
+
+    [Fact]
+    [Trait("Requirement", "REQ-Z-012")]
+    public void CalculateDailyCost_OneCriticalLion_Returns75Euros()
+    {
+        // Arrange
+        var zoo = new ZooManager();
+        zoo.AddAnimal(new Animal { Id = 1, Name = "Simba", Category = AnimalCategory.Carnivore, Status = HealthStatus.Critical });
+
+        // Act
+        var totalCost = zoo.CalculateDailyCost();
+
+        // Assert
+        totalCost.Should().Be(75); // 25 (Carnivore) + 50 (alerte vétérinaire Critical)
+    }
 }
