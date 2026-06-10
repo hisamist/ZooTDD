@@ -392,4 +392,18 @@ public class ZooManagerTests
         herbivores.Should().HaveCount(2);
         herbivores.Should().OnlyContain(a => a.Category == AnimalCategory.Herbivore);
     }
+
+    [Fact]
+    [Trait("Requirement", "REQ-Z-017")]
+    public void GetAnimalsByCategory_UnknownCategory_ReturnsEmpty()
+    {
+        // Arrange
+        var zoo = new ZooManager();
+
+        // Act
+        var result = zoo.GetAnimalsByCategory((AnimalCategory)999);
+
+        // Assert
+        result.Should().BeEmpty();
+    }
 }
