@@ -69,6 +69,7 @@ public class ZooManager
         return total;
     }
 
-    public IReadOnlyList<Animal> GetCriticalAnimals() => throw new NotImplementedException();
+    public IReadOnlyList<Animal> GetCriticalAnimals()
+        => _animals.Values.Where(a => a.Status == HealthStatus.Critical).ToList();
     public bool RemoveAnimal(int id) => throw new NotImplementedException();
 }
