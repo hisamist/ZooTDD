@@ -25,7 +25,7 @@ public class ZooManager
 
     public int TotalCapacityUsed => _animals.Values.Sum(a => a.Status == HealthStatus.Critical ? 2 : 1);
 
-public decimal CalculateDailyRation(int animalId)
+    public decimal CalculateDailyRation(int animalId)
     {
         var animal = GetAnimal(animalId);
 
