@@ -220,7 +220,7 @@ public class ZooManagerTests
         var dailyRation = zoo.CalculateDailyRation(sickLion.Id);
 
         // Assert
-        dailyRation.Should().Be(3.5); // Assuming the ration is -30 % of health status for this example
+        dailyRation.Should().Be(3.5m); // Assuming the ration is -30 % of health status for this example
     }
 
     [Fact]
@@ -252,6 +252,6 @@ public class ZooManagerTests
         var dailyRation = zoo.CalculateDailyRation(sickBear.Id);
 
         // Assert
-        dailyRation.Should().Be(4.9);  // Assuming the ration is -30 % of health status for this example
+        dailyRation.Should().Be(4.9m);  // Assuming the ration is -30 % of health status for this example
     }
 }
