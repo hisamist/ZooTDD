@@ -47,7 +47,23 @@ public class ZooManager
         throw new ArgumentException($"Unknown animal category for ID {animalId}.");
     }
 
-    public double CalculateDailyCost() => throw new NotImplementedException();
+    public double CalculateDailyCost()
+    {
+        double total = 0;
+
+        foreach (var animal in _animals.Values)
+        {
+            if (animal.Category == AnimalCategory.Carnivore)
+                total += 25.0;
+            else if (animal.Category == AnimalCategory.Herbivore)
+                total += 8.0;
+            else if (animal.Category == AnimalCategory.Omnivore)
+                total += 15.0;
+        }
+
+        return total;
+    }
+
     public IReadOnlyList<Animal> GetCriticalAnimals() => throw new NotImplementedException();
     public bool RemoveAnimal(int id) => throw new NotImplementedException();
 }
