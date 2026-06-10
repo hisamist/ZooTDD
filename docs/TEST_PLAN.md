@@ -2,7 +2,7 @@
 
 ## 1. Identification
 - Projet : Zoo - Système de gestion du Zoo Municipal de Lyon
-- Version : 1.0
+- Version : 2.0
 - Auteur : Hisami Stolz
 - Date : 2026-06-10
 - Statut : Brouillon
@@ -137,6 +137,16 @@ TC-019 — Retirer un animal inexistant
   Attendu : `false`
   REQ : REQ-Z-015
 
+TC-020 — Calculer le coût mensuel (30 jours) du zoo
+  Entrée : zoo contenant 1 Carnivore Healthy (25 €) + 1 Herbivore Sick (8 € + 20 €) + 1 Omnivore Critical (15 € + 50 €)
+  Attendu : `3540.0` € (coût quotidien `118.0` € × 30 jours)
+  REQ : REQ-Z-016
+
+TC-021 — Retourner les animaux par catégorie alimentaire.
+  Entrée : zoo avec 2 Herbivores, 1 Carnivore, 1 Omnivore ; filtre sur `AnimalCategory.Herbivore`
+  Attendu : liste de 2 animaux, tous avec `Category == Herbivore`
+  REQ : REQ-Z-017
+
 ## 8. Matrice de traçabilité
 
 | Exigence  | Cas de test            | Statut prévu |
@@ -156,6 +166,8 @@ TC-019 — Retirer un animal inexistant
 | REQ-Z-013 | TC-016, TC-017         | À faire      |
 | REQ-Z-014 | TC-018                 | À faire      |
 | REQ-Z-015 | TC-019                 | À faire      |
+| REQ-Z-016 | TC-020                 | À faire      |
+| REQ-Z-017 | TC-021                 | À faire      |
 
 ## 9. Risques
 
