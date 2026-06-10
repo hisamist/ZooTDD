@@ -7,6 +7,9 @@ public class ZooManager
 
     public int AddAnimal(Animal animal)
     {
+        if (_animals.ContainsKey(animal.Id))
+        throw new DuplicateAnimalException(animal.Id);
+        
         _animals[animal.Id] = animal;
         return animal.Id;
     }
@@ -16,7 +19,7 @@ public class ZooManager
         return animal;
     }
     public int TotalAnimals => _animals.Count;
-    
+
     public int TotalCapacityUsed => throw new NotImplementedException();
     public double CalculateDailyRation(int animalId) => throw new NotImplementedException();
     public double CalculateDailyCost() => throw new NotImplementedException();
