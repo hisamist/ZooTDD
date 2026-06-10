@@ -23,7 +23,7 @@ public class ZooManager
     }
     public int TotalAnimals => _animals.Count;
 
-    public int TotalCapacityUsed => throw new NotImplementedException();
+    public int TotalCapacityUsed => _animals.Values.Sum(a => a.Status == HealthStatus.Critical ? 2 : 1);
     public double CalculateDailyRation(int animalId) => throw new NotImplementedException();
     public double CalculateDailyCost() => throw new NotImplementedException();
     public IReadOnlyList<Animal> GetCriticalAnimals() => throw new NotImplementedException();
