@@ -8,10 +8,10 @@ public class ZooManager
     public int AddAnimal(Animal animal)
     {
         if (_animals.ContainsKey(animal.Id))
-        throw new DuplicateAnimalException(animal.Id);
+            throw new DuplicateAnimalException(animal.Id);
 
         if (_animals.Count >= MaxCapacity)
-        throw new ZooCapacityExceededException();
+            throw new ZooCapacityExceededException();
 
         _animals[animal.Id] = animal;
         return animal.Id;
@@ -25,26 +25,25 @@ public class ZooManager
 
     public int TotalCapacityUsed => _animals.Values.Sum(a => a.Status == HealthStatus.Critical ? 2 : 1);
 
-    public double CalculateDailyRation(int animalId)
+public decimal CalculateDailyRation(int animalId)
     {
         var animal = GetAnimal(animalId);
 
         if (animal == null)
             throw new ArgumentException($"Animal with ID {animalId} not found.");
 
-        if (animal.Category == AnimalCategory.Carnivore)
-            if (animal.Status == HealthStatus.Critical)
-                return 3.5; // Example: 5 kg of meat per day reduced by 30% for critical health status
-            else
-                return 5.0; // Example: 5 kg of meat per day
+        var baseRation = animal.Category switch
+        {
+            AnimalCategory.Carnivore => 5.0m,
+            AnimalCategory.Herbivore => 10.0m,
+            AnimalCategory.Omnivore => 7.0m,
+            _ => throw new ArgumentException(
+                $"Unknown animal category for ID {animalId}.")
+        };
 
-        if (animal.Category == AnimalCategory.Herbivore)
-            return 10.0; // Example: 10 kg of plants per day
-
-        if (animal.Category == AnimalCategory.Omnivore)
-            return 7.0; // Example: 7 kg of mixed food per day
-
-        throw new ArgumentException($"Unknown animal category for ID {animalId}.");
+        return animal.Status == HealthStatus.Sick
+            ? baseRation * 0.7m
+            : baseRation;
     }
 
     public double CalculateDailyCost()
