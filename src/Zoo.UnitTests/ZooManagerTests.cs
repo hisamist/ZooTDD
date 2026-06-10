@@ -157,4 +157,21 @@ public class ZooManagerTests
         // Assert
         dailyRation.Should().Be(3.5); // Assuming the ration is -30 % of health status for this example
     }
+
+    [Fact]
+    [Trait("Requirement", "REQ-Z-010")]
+    public void CalculateDailyCost_MultipleHealthyAnimals_ReturnsSumOfCategoryCosts()
+    {
+        // Arrange
+        var zoo = new ZooManager();
+        zoo.AddAnimal(new Animal { Id = 1, Name = "Simba", Category = AnimalCategory.Carnivore, Status = HealthStatus.Healthy });
+        zoo.AddAnimal(new Animal { Id = 2, Name = "Pumbaa", Category = AnimalCategory.Herbivore, Status = HealthStatus.Healthy });
+        zoo.AddAnimal(new Animal { Id = 3, Name = "Zazu", Category = AnimalCategory.Omnivore, Status = HealthStatus.Healthy });
+
+        // Act
+        var totalCost = zoo.CalculateDailyCost();
+
+        // Assert
+        totalCost.Should().Be(48); // 25 (Carnivore) + 8 (Herbivore) + 15 (Omnivore)
+    }
 }
