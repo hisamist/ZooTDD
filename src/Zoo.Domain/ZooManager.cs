@@ -70,5 +70,5 @@ public decimal CalculateDailyRation(int animalId)
 
     public IReadOnlyList<Animal> GetCriticalAnimals()
         => _animals.Values.Where(a => a.Status == HealthStatus.Critical).ToList();
-    public bool RemoveAnimal(int id) => throw new NotImplementedException();
+    public bool RemoveAnimal(int id) => _animals.Remove(id);
 }
