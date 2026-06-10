@@ -126,6 +126,7 @@ public class ZooManagerTests
         // Assert
         result.Should().Be(3);
     }
+
     [Fact]
     [Trait("Requirement", "REQ-Z-008")]
     public void CalculateDailyRation_ForACarnivore()
@@ -140,6 +141,70 @@ public class ZooManagerTests
 
         // Assert
         dailyRation.Should().Be(5); // Assuming carnivores require 5 kg of food per day
+    }
+
+    [Fact]
+    [Trait("Requirement", "REQ-Z-008")]
+    public void CalculateDailyRation_ForAHerbivore()
+    {
+        // Arrange
+        var zoo = new ZooManager();
+        var elephant = new Animal { Id = 1, Name = "Dumbo", Category = AnimalCategory.Herbivore };
+        zoo.AddAnimal(elephant);
+
+        // Act
+        var dailyRation = zoo.CalculateDailyRation(elephant.Id);
+
+        // Assert
+        dailyRation.Should().Be(10); // Assuming herbivores require 10 kg of food per day
+    }
+
+    [Fact]
+    [Trait("Requirement", "REQ-Z-008")]
+    public void CalculateDailyRation_ForAnOmnivore()
+    {
+        // Arrange
+        var zoo = new ZooManager();
+        var bear = new Animal { Id = 1, Name = "Baloo", Category = AnimalCategory.Omnivore };
+        zoo.AddAnimal(bear);
+
+        // Act
+        var dailyRation = zoo.CalculateDailyRation(bear.Id);
+
+        // Assert
+        dailyRation.Should().Be(7); // Assuming omnivores require 7 kg of food per day
+    }
+
+    [Fact]
+    [Trait("Requirement", "REQ-Z-008")]
+    public void CalculateDailyRation_ForUnknownAnimal_ThrowsArgumentException()
+    {
+        // Arrange
+        var zoo = new ZooManager();
+
+        // Act
+        Action act = () => zoo.CalculateDailyRation(999);
+
+        // Assert
+        act.Should().Throw<ArgumentException>()
+            .WithMessage("Animal with ID 999 not found.");
+    }
+
+    [Fact]
+    [Trait("Requirement", "REQ-Z-008")]
+    public void CalculateDailyRation_ForUnknownCategory_ThrowsArgumentException()
+    {
+        // Arrange
+        var zoo = new ZooManager();
+        var unknownAnimal = new Animal { Id = 1, Name = "Mystery", Category = (AnimalCategory)999 };
+        zoo.AddAnimal(unknownAnimal);
+
+        // Act
+        Action act = () => zoo.CalculateDailyRation(unknownAnimal.Id);
+
+        // Assert
+        act.Should().Throw<ArgumentException>()
+            .WithMessage($"Unknown animal category for ID {unknownAnimal.Id}.");
     }
 
     [Fact]
