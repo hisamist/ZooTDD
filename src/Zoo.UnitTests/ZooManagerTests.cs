@@ -209,7 +209,7 @@ public class ZooManagerTests
 
     [Fact]
     [Trait("Requirement", "REQ-Z-009")]
-    public void CalculateDailyRation_ForASickAnimal()
+    public void CalculateDailyRation_ForASickAnimalCarnivore()
     {
         // Arrange
         var zoo = new ZooManager();
@@ -221,5 +221,37 @@ public class ZooManagerTests
 
         // Assert
         dailyRation.Should().Be(3.5); // Assuming the ration is -30 % of health status for this example
+    }
+
+    [Fact]
+    [Trait("Requirement", "REQ-Z-009")]
+    public void CalculateDailyRation_ForASickAnimalHerbivore()
+    {
+        // Arrange
+        var zoo = new ZooManager();
+        var sickElephant = new Animal { Id = 1, Name = "Dumbo", Category = AnimalCategory.Herbivore, Status = HealthStatus.Critical };
+        zoo.AddAnimal(sickElephant);
+
+        // Act
+        var dailyRation = zoo.CalculateDailyRation(sickElephant.Id);
+
+        // Assert
+        dailyRation.Should().Be(7);  // Assuming the ration is -30 % of health status for this example
+    }
+
+    [Fact]
+    [Trait("Requirement", "REQ-Z-009")]
+    public void CalculateDailyRation_ForASickAnimalOmnivore()
+    {
+                // Arrange
+        var zoo = new ZooManager();
+        var sickBear = new Animal { Id = 1, Name = "Baloo", Category = AnimalCategory.Omnivore, Status = HealthStatus.Critical };
+        zoo.AddAnimal(sickBear);
+
+        // Act
+        var dailyRation = zoo.CalculateDailyRation(sickBear.Id);
+
+        // Assert
+        dailyRation.Should().Be(4.9);  // Assuming the ration is -30 % of health status for this example
     }
 }
