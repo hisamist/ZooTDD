@@ -213,7 +213,7 @@ public class ZooManagerTests
     {
         // Arrange
         var zoo = new ZooManager();
-        var sickLion = new Animal { Id = 1, Name = "Simba", Category = AnimalCategory.Carnivore, Status = HealthStatus.Critical };
+        var sickLion = new Animal { Id = 1, Name = "Simba", Category = AnimalCategory.Carnivore, Status = HealthStatus.Sick };
         zoo.AddAnimal(sickLion);
 
         // Act
@@ -229,7 +229,7 @@ public class ZooManagerTests
     {
         // Arrange
         var zoo = new ZooManager();
-        var sickElephant = new Animal { Id = 1, Name = "Dumbo", Category = AnimalCategory.Herbivore, Status = HealthStatus.Critical };
+        var sickElephant = new Animal { Id = 1, Name = "Dumbo", Category = AnimalCategory.Herbivore, Status = HealthStatus.Sick };
         zoo.AddAnimal(sickElephant);
 
         // Act
@@ -245,7 +245,7 @@ public class ZooManagerTests
     {
                 // Arrange
         var zoo = new ZooManager();
-        var sickBear = new Animal { Id = 1, Name = "Baloo", Category = AnimalCategory.Omnivore, Status = HealthStatus.Critical };
+        var sickBear = new Animal { Id = 1, Name = "Baloo", Category = AnimalCategory.Omnivore, Status = HealthStatus.Sick };
         zoo.AddAnimal(sickBear);
 
         // Act
