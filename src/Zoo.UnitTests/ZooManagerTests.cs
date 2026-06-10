@@ -174,4 +174,19 @@ public class ZooManagerTests
         // Assert
         totalCost.Should().Be(48); // 25 (Carnivore) + 8 (Herbivore) + 15 (Omnivore)
     }
+
+    [Fact]
+    [Trait("Requirement", "REQ-Z-011")]
+    public void CalculateDailyCost_OneSickLion_Returns45Euros()
+    {
+        // Arrange
+        var zoo = new ZooManager();
+        zoo.AddAnimal(new Animal { Id = 1, Name = "Simba", Category = AnimalCategory.Carnivore, Status = HealthStatus.Sick });
+
+        // Act
+        var totalCost = zoo.CalculateDailyCost();
+
+        // Assert
+        totalCost.Should().Be(45); // 25 (Carnivore) + 20 (frais vétérinaires Sick)
+    }
 }
