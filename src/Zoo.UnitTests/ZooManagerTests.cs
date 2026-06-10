@@ -157,7 +157,6 @@ public class ZooManagerTests
 
     [Fact]
     [Trait("Requirement", "REQ-Z-008")]
-    [Trait("TestCase", "TC-009")]
     public void CalculateDailyRation_ForAHerbivore()
     {
         // Arrange
@@ -174,7 +173,6 @@ public class ZooManagerTests
 
     [Fact]
     [Trait("Requirement", "REQ-Z-008")]
-    [Trait("TestCase", "TC-010")]
     public void CalculateDailyRation_ForAnOmnivore()
     {
         // Arrange
@@ -191,7 +189,6 @@ public class ZooManagerTests
 
     [Fact]
     [Trait("Requirement", "REQ-Z-008")]
-    [Trait("TestCase", "TC-011")]
     public void CalculateDailyRation_ForUnknownAnimal_ThrowsArgumentException()
     {
         // Arrange
@@ -207,7 +204,6 @@ public class ZooManagerTests
 
     [Fact]
     [Trait("Requirement", "REQ-Z-008")]
-    [Trait("TestCase", "TC-012")]
     public void CalculateDailyRation_ForUnknownCategory_ThrowsArgumentException()
     {
         // Arrange
@@ -225,7 +221,6 @@ public class ZooManagerTests
 
     [Fact]
     [Trait("Requirement", "REQ-Z-009")]
-    [Trait("TestCase", "TC-013")]
     public void CalculateDailyRation_ForASickAnimalCarnivore()
     {
         // Arrange
@@ -242,7 +237,7 @@ public class ZooManagerTests
 
     [Fact]
     [Trait("Requirement", "REQ-Z-009")]
-    [Trait("TestCase", "TC-014")]
+    [Trait("TestCase", "TC-009")]
     public void CalculateDailyRation_ForASickAnimalHerbivore()
     {
         // Arrange
@@ -259,7 +254,6 @@ public class ZooManagerTests
 
     [Fact]
     [Trait("Requirement", "REQ-Z-009")]
-    [Trait("TestCase", "TC-015")]
     public void CalculateDailyRation_ForASickAnimalOmnivore()
     {
         // Arrange
@@ -276,7 +270,7 @@ public class ZooManagerTests
 
     [Fact]
     [Trait("Requirement", "REQ-Z-010")]
-    [Trait("TestCase", "TC-016")]
+    [Trait("TestCase", "TC-012")]
     public void CalculateDailyCost_MultipleHealthyAnimals_ReturnsSumOfCategoryCosts()
     {
         // Arrange
@@ -294,7 +288,7 @@ public class ZooManagerTests
 
     [Fact]
     [Trait("Requirement", "REQ-Z-011")]
-    [Trait("TestCase", "TC-017")]
+    [Trait("TestCase", "TC-013")]
     public void CalculateDailyCost_OneSickLion_Returns45Euros()
     {
         // Arrange
@@ -310,7 +304,7 @@ public class ZooManagerTests
 
     [Fact]
     [Trait("Requirement", "REQ-Z-012")]
-    [Trait("TestCase", "TC-018")]
+    [Trait("TestCase", "TC-014")]
     public void CalculateDailyCost_OneCriticalLion_Returns75Euros()
     {
         // Arrange
@@ -326,7 +320,7 @@ public class ZooManagerTests
 
     [Fact]
     [Trait("Requirement", "REQ-Z-013")]
-    [Trait("TestCase", "TC-019")]
+    [Trait("TestCase", "TC-016")]
     public void GetCriticalAnimals_ThreeCriticalAndTwoHealthy_ReturnsThree()
     {
         // Arrange
@@ -347,7 +341,7 @@ public class ZooManagerTests
 
     [Fact]
     [Trait("Requirement", "REQ-Z-013")]
-    [Trait("TestCase", "TC-020")]
+    [Trait("TestCase", "TC-017")]
     public void GetCriticalAnimals_NoCriticalAnimals_ReturnsEmptyList()
     {
         // Arrange
@@ -364,7 +358,7 @@ public class ZooManagerTests
 
     [Fact]
     [Trait("Requirement", "REQ-Z-014")]
-    [Trait("TestCase", "TC-021")]
+    [Trait("TestCase", "TC-018")]
     public void RemoveAnimal_ExistingId_ReturnsTrue()
     {
         // Arrange
@@ -381,7 +375,7 @@ public class ZooManagerTests
 
     [Fact]
     [Trait("Requirement", "REQ-Z-015")]
-    [Trait("TestCase", "TC-022")]
+    [Trait("TestCase", "TC-019")]
     public void RemoveAnimal_UnknownId_ReturnsFalse()
     {
         // Arrange
@@ -396,6 +390,7 @@ public class ZooManagerTests
 
     [Fact]
     [Trait("Requirement", "REQ-Z-016")]
+     [Trait("TestCase", "TC-020")]
     public void CalculateMonthlyCost_ZooWithVariousAnimals_ReturnsExpectedMonthlyCost()
     {
         // Arrange
@@ -414,6 +409,7 @@ public class ZooManagerTests
 
     [Fact]
     [Trait("Requirement", "REQ-Z-017")]
+    [Trait("TestCase", "TC-021")]
     public void GetAnimalsByCategory_MultipleAnimals_ReturnsOnlySpecifiedCategory()
     {
         // Arrange
