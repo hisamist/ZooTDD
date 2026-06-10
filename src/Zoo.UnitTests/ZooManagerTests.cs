@@ -337,4 +337,18 @@ public class ZooManagerTests
         result.Should().BeTrue();
         zoo.TotalAnimals.Should().Be(0);
     }
+
+    [Fact]
+    [Trait("Requirement", "REQ-Z-015")]
+    public void RemoveAnimal_UnknownId_ReturnsFalse()
+    {
+        // Arrange
+        var zoo = new ZooManager();
+
+        // Act
+        var result = zoo.RemoveAnimal(999);
+
+        // Assert
+        result.Should().BeFalse();
+    }
 }
