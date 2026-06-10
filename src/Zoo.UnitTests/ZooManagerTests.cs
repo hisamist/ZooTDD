@@ -93,4 +93,22 @@ public class ZooManagerTests
             .WithMessage("*1 already exists*");
         }
 
+    [Fact]
+    [Trait("Requirement", "REQ-Z-006")]
+    public void AddAnimal_AtMaxCapacity_ThrowsZooCapacityExceededException()
+    {
+        // Arrange
+        var zoo = new ZooManager();
+        for (var i = 1; i <= ZooManager.MaxCapacity; i++)
+        {
+            zoo.AddAnimal(new Animal { Id = i, Name = $"Animal{i}", Category = AnimalCategory.Herbivore });
+        }
+
+        // Act
+        Action act = () => zoo.AddAnimal(new Animal { Id = 51, Name = "Extra", Category = AnimalCategory.Herbivore });
+
+        // Assert
+        act.Should().Throw<ZooCapacityExceededException>();
+    }
+
 }
