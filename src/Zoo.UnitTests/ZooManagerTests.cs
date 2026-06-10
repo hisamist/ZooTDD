@@ -355,4 +355,22 @@ public class ZooManagerTests
         // Assert
         result.Should().BeFalse();
     }
+
+    [Fact]
+    [Trait("Requirement", "REQ-Z-016")]
+    public void CalculateMonthlyCost_ZooWithVariousAnimals_ReturnsExpectedMonthlyCost()
+    {
+        // Arrange
+        var zoo = new ZooManager();
+        zoo.AddAnimal(new Animal { Id = 1, Name = "Simba", Category = AnimalCategory.Carnivore, Status = HealthStatus.Healthy });
+        zoo.AddAnimal(new Animal { Id = 2, Name = "Pumbaa", Category = AnimalCategory.Herbivore, Status = HealthStatus.Sick });
+        zoo.AddAnimal(new Animal { Id = 3, Name = "Zazu", Category = AnimalCategory.Omnivore, Status = HealthStatus.Critical });
+
+        // Act
+        var dailyCost = zoo.CalculateDailyCost();
+        var monthlyCost = dailyCost * 30;
+
+        // Assert
+        monthlyCost.Should().Be(3540.0); // 118.0 € × 30 days
+    }
 }
