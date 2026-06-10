@@ -33,7 +33,10 @@ public class ZooManager
             throw new ArgumentException($"Animal with ID {animalId} not found.");
 
         if (animal.Category == AnimalCategory.Carnivore)
-            return 5.0; // Example: 5 kg of meat per day
+            if (animal.Status == HealthStatus.Critical)
+                return 3.5; // Example: 5 kg of meat per day reduced by 30% for critical health status
+            else
+                return 5.0; // Example: 5 kg of meat per day
 
         if (animal.Category == AnimalCategory.Herbivore)
             return 10.0; // Example: 10 kg of plants per day
