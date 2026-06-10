@@ -62,6 +62,8 @@ public class ZooManager
 
             if (animal.Status == HealthStatus.Sick)
                 total += 20.0;
+            else if (animal.Status == HealthStatus.Critical)
+                total += 50.0;
         }
 
         return total;
