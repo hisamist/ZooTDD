@@ -10,7 +10,11 @@ public class ZooManager
         _animals[animal.Id] = animal;
         return animal.Id;
     }
-    public Animal? GetAnimal(int id) => throw new NotImplementedException();
+    public Animal? GetAnimal(int id)
+    {
+        _animals.TryGetValue(id, out var animal);
+        return animal;
+    }
     public int TotalAnimals => throw new NotImplementedException();
     public int TotalCapacityUsed => throw new NotImplementedException();
     public double CalculateDailyRation(int animalId) => throw new NotImplementedException();
