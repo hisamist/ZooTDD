@@ -141,4 +141,20 @@ public class ZooManagerTests
         // Assert
         dailyRation.Should().Be(5); // Assuming carnivores require 5 kg of food per day
     }
+
+    [Fact]
+    [Trait("Requirement", "REQ-Z-009")]
+    public void CalculateDailyRation_ForASickAnimal()
+    {
+        // Arrange
+        var zoo = new ZooManager();
+        var sickLion = new Animal { Id = 1, Name = "Simba", Category = AnimalCategory.Carnivore, Status = HealthStatus.Critical };
+        zoo.AddAnimal(sickLion);
+
+        // Act
+        var dailyRation = zoo.CalculateDailyRation(sickLion.Id);
+
+        // Assert
+        dailyRation.Should().Be(3.5); // Assuming the ration is -30 % of health status for this example
+    }
 }
