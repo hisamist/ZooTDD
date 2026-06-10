@@ -204,4 +204,24 @@ public class ZooManagerTests
         // Assert
         totalCost.Should().Be(75); // 25 (Carnivore) + 50 (alerte vétérinaire Critical)
     }
+
+    [Fact]
+    [Trait("Requirement", "REQ-Z-013")]
+    public void GetCriticalAnimals_ThreeCriticalAndTwoHealthy_ReturnsThree()
+    {
+        // Arrange
+        var zoo = new ZooManager();
+        zoo.AddAnimal(new Animal { Id = 1, Name = "A", Category = AnimalCategory.Carnivore, Status = HealthStatus.Critical });
+        zoo.AddAnimal(new Animal { Id = 2, Name = "B", Category = AnimalCategory.Herbivore, Status = HealthStatus.Critical });
+        zoo.AddAnimal(new Animal { Id = 3, Name = "C", Category = AnimalCategory.Omnivore, Status = HealthStatus.Critical });
+        zoo.AddAnimal(new Animal { Id = 4, Name = "D", Category = AnimalCategory.Herbivore, Status = HealthStatus.Healthy });
+        zoo.AddAnimal(new Animal { Id = 5, Name = "E", Category = AnimalCategory.Carnivore, Status = HealthStatus.Healthy });
+
+        // Act
+        var criticalAnimals = zoo.GetCriticalAnimals();
+
+        // Assert
+        criticalAnimals.Should().HaveCount(3);
+        criticalAnimals.Should().OnlyContain(a => a.Status == HealthStatus.Critical);
+    }
 }
