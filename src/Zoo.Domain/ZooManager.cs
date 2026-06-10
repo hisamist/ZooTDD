@@ -59,6 +59,9 @@ public class ZooManager
                 total += 8.0;
             else if (animal.Category == AnimalCategory.Omnivore)
                 total += 15.0;
+
+            if (animal.Status == HealthStatus.Sick)
+                total += 20.0;
         }
 
         return total;
