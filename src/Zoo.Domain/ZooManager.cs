@@ -24,7 +24,26 @@ public class ZooManager
     public int TotalAnimals => _animals.Count;
 
     public int TotalCapacityUsed => _animals.Values.Sum(a => a.Status == HealthStatus.Critical ? 2 : 1);
-    public double CalculateDailyRation(int animalId) => throw new NotImplementedException();
+
+    public double CalculateDailyRation(int animalId)
+    {
+        var animal = GetAnimal(animalId);
+
+        if (animal == null)
+            throw new ArgumentException($"Animal with ID {animalId} not found.");
+
+        if (animal.Category == AnimalCategory.Carnivore)
+            return 5.0; // Example: 5 kg of meat per day
+
+        if (animal.Category == AnimalCategory.Herbivore)
+            return 10.0; // Example: 10 kg of plants per day
+
+        if (animal.Category == AnimalCategory.Omnivore)
+            return 7.0; // Example: 7 kg of mixed food per day
+
+        throw new ArgumentException($"Unknown animal category for ID {animalId}.");
+    }
+
     public double CalculateDailyCost() => throw new NotImplementedException();
     public IReadOnlyList<Animal> GetCriticalAnimals() => throw new NotImplementedException();
     public bool RemoveAnimal(int id) => throw new NotImplementedException();
